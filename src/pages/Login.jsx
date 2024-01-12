@@ -1,53 +1,45 @@
-import React from 'react';
-import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon
-}
-from 'mdb-react-ui-kit';
+import React, { useState } from 'react'
+import './Login.css'
 
-function Login() {
-  return (
-    <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+import user_icon from './Asset/person.png'
+import email_icon from './Asset/email.png'
+import password_icon from './Asset/password.png'
 
-      <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-      <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
+const Login = () => {
 
-      <div className="d-flex justify-content-between mx-3 mb-4">
-        <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-        <a href="!#">Forgot password?</a>
-      </div>
+const [action, setActions]=useState("Login");
 
-      <MDBBtn className="mb-4">Sign in</MDBBtn>
+    return(
+        <div className='container'>
+            <div className='header'>
+                <div className='text'> {action}</div>
+                <div className='underline'> </div>
+            </div>
+            <div className='inputs'>
+                {action==="Login"?<div></div>:<div className='input'>
+                <img src={user_icon} alt='' />
+                <input type='text'placeholder='Name'/>'
+            </div> }
+             
 
-      <div className="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-        <p>or sign up with:</p>
+            <div className='input'>
+                <img src={email_icon} alt='' />
+                <input type='email' placeholder='Email Id'/>'
+            </div> 
 
-        <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='facebook-f' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='twitter' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='google' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='github' size="sm"/>
-          </MDBBtn>
-
+            <div className='input'>
+                <img src={password_icon} alt='' />
+                <input type='password' placeholder='Password'/>'
+            </div> 
         </div>
-      </div>
-
-    </MDBContainer>
-  );
+        {action==="Sign Up"?<div></div>:<div className='forgot-password'>Lost Password? <span> Click Here</span></div>}
+        
+        <div className='submit container'>
+            <div className={action==="Login"? " submit gray":"submit"} onClick={()=>{setActions("Sign Up")}}>Sign Up </div>
+            <div className={action==="Sign Up"? "submit gray":"submit"} onClick={()=>{setActions("Login")}}>Login </div>
+        </div>
+        </div>
+    )
 }
 
-export default Login;
+export default Login
